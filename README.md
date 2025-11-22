@@ -9,16 +9,27 @@ The application allows administrators to create departments and assign employees
 
 ⭐ Features Implemented
 ✔ Employee CRUD (Create, Read, Update, Delete)
+
 ✔ Department CRUD
+
 ✔ Search Employees (by name or email)
+
 ✔ Filter Employees by Department
+
 ✔ Salary & Email Validations
+
 ✔ Unique Email Constraint
+
 ✔ Employee belongs_to Department
+
 ✔ Department has_many Employees (dependent destroy)
+
 ✔ Bootstrap UI (icons, buttons, layout)
+
 ✔ Fully responsive mobile-friendly design
+
 ✔ Proper error messages in forms (inline red messages)
+
 ✔ Custom currency format (₹ Rupee)
 
 
