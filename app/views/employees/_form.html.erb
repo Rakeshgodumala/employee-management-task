@@ -1,0 +1,63 @@
+<%= form_with(model: employee, local: true, class: "card p-4 shadow-sm") do |form| %>
+
+  <!-- 🟩 FIRST NAME FIELD WITH ERROR MESSAGE -->
+  <div class="mb-3">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+
+    <!-- 🟩 Inline error for first name -->
+    <% if employee.errors[:first_name].any? %>
+      <p class="text-danger mt-1"><%= employee.errors[:first_name].first %></p>
+    <% end %>
+  </div>
+
+  <!-- 🟩 LAST NAME FIELD -->
+  <div class="mb-3">
+    <%= form.label :last_name, class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control" %>
+
+    <!-- 🟩 Inline error -->
+    <% if employee.errors[:last_name].any? %>
+      <p class="text-danger mt-1"><%= employee.errors[:last_name].first %></p>
+    <% end %>
+  </div>
+
+  <!-- 🟩 EMAIL FIELD + FORMAT + UNIQUE ERROR -->
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control" %>
+
+    <!-- 🟩 Inline email error (duplicate OR invalid format) -->
+    <% if employee.errors[:email].any? %>
+      <p class="text-danger mt-1"><%= employee.errors[:email].first %></p>
+    <% end %>
+  </div>
+
+  <!-- 🟩 SALARY FIELD + ERROR (greater than 0) -->
+  <div class="mb-3">
+    <%= form.label :salary, class: "form-label" %>
+    <%= form.number_field :salary, step: 0.01, class: "form-control" %>
+
+    <!-- 🟩 Inline salary error -->
+    <% if employee.errors[:salary].any? %>
+      <p class="text-danger mt-1"><%= employee.errors[:salary].first %></p>
+    <% end %>
+  </div>
+
+  <!-- 🟩 DEPARTMENT DROPDOWN -->
+  <div class="mb-3">
+    <%= form.label :department_id, "Department", class: "form-label" %>
+    <%= form.collection_select :department_id, Department.all, :id, :name, {}, class: "form-select" %>
+
+    <!-- 🟩 Inline error -->
+    <% if employee.errors[:department_id].any? %>
+      <p class="text-danger mt-1"><%= employee.errors[:department_id].first %></p>
+    <% end %>
+  </div>
+
+  <!-- 🟩 SUBMIT BUTTON -->
+  <div>
+    <%= form.submit class: "btn btn-success" %>
+  </div>
+
+<% end %>

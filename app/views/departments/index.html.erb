@@ -1,0 +1,53 @@
+<h1 class="mb-4">Departments</h1>
+
+<!-- 🟩 NEW: Navigation button to go to Employees page -->
+<!-- EXPLANATION: Allows switching from departments → employees -->
+<div class="text-end mb-3">
+  <%= link_to "Employees", employees_path, class: "btn btn-dark" %>
+</div>
+
+<div class="mb-3">
+  <%= link_to "New Department", new_department_path, class: "btn btn-primary" %>
+</div>
+
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Budget</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr>
+        <td><%= department.name %></td>
+        <td><%= number_to_currency(department.budget, unit: "₹ ") %></td>
+
+        <td class="d-flex gap-2">
+
+          <!-- 🟩 NEW Show button w/icon -->
+          <%= link_to department, class: "btn btn-info btn-sm text-white" do %>
+            <i class="bi bi-eye"></i> Show
+          <% end %>
+
+          <!-- 🟩 NEW Edit button w/icon -->
+          <%= link_to edit_department_path(department), class: "btn btn-warning btn-sm text-white" do %>
+            <i class="bi bi-pencil-square"></i> Edit
+          <% end %>
+
+          <!-- 🟩 FIX: Delete using button_to -->
+          <%= button_to department,
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "btn btn-danger btn-sm text-white" do %>
+           Delete <i class="bi bi-x-circle"></i> 
+          <% end %>
+
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

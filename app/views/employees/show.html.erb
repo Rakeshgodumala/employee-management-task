@@ -1,0 +1,27 @@
+<h1 class="mb-4">Employee Details</h1>
+
+<div class="card p-4 shadow-sm">
+
+  <p><strong>First name:</strong> <%= @employee.first_name %></p>
+  <p><strong>Last name:</strong> <%= @employee.last_name %></p>
+  <p><strong>Email:</strong> <%= @employee.email %></p>
+
+  <p><strong>Salary:</strong> <%= number_to_currency(@employee.salary, unit: "₹ ") %></p>  <!--- here also I change currency symbol-->
+
+  <p><strong>Department:</strong> <%= @employee.department.name %></p>
+
+  <div class="mt-4 d-flex gap-2">
+
+    <%= link_to "Edit", edit_employee_path(@employee), class: "btn btn-warning" %>
+
+    <%= link_to "Back to employees", employees_path, class: "btn btn-secondary" %>
+
+    <!-- 🟩 FIX: DELETE MUST USE button_to -->
+    <%= button_to "Destroy", @employee,
+                  method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  class: "btn btn-danger" %>
+
+  </div>
+
+</div>
